@@ -1,0 +1,11 @@
+ canvas{
+  border: 3px solid lightblue;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px
+} 
+
+.navbar {
+  background-color: lightblue;
+}
