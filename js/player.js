@@ -20,10 +20,35 @@ class Player {
     this.ctx.restore();
   }
   update() {
+    if (this.y + this.vy > canvas.height || this.y + this.vy < 0) {
+      this.vy *= -1;
+    }
+    if (this.x + this.vx > canvas.width || this.x + this.vx < 0) {
+      this.vx *= -1;
+    }
     this.ctx = ctx
     this.angle += this.moveAngle * Math.PI / 180;
     this.x += this.speed * Math.sin(this.angle);
     this.y -= this.speed * Math.cos(this.angle);
+  }
+
+  crashWith(otherobj) {
+    var myleft = this.x;
+    var myright = this.x + (this.width);
+    var mytop = this.y;
+    var mybottom = this.y + (this.height);
+    var otherleft = otherobj.x;
+    var otherright = otherobj.x + (otherobj.width);
+    var othertop = otherobj.y;
+    var otherbottom = otherobj.y + (otherobj.height);
+    var crash = true;
+    if ((mybottom < othertop) ||
+      (mytop > otherbottom) ||
+      (myright < otherleft) ||
+      (myleft > otherright)) {
+      crash = false;
+    }
+    return crash;
   }
 }
 

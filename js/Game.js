@@ -1,28 +1,10 @@
 class Game {
-  constructor(ctx, grid) {
-    this.BUBBLE_WIDTH = ctx.canvas.width / grid[0].length
-    this.BUBBLE_HEIGHT = 50
+  constructor(ctx) {
+
     this.PLAYER_RADIUS = this.BUBBLE_HEIGHT / 2
 
     this.ctx = ctx
     this.bubbles = []
-    // Creation of bubbles based on the grid
-    // for (var row = 0; row < grid.length; row++) {
-    //   for (var col = 0; col < grid[row].length; col++) {
-    //     if (grid[row][col] === 'X') {
-    //       this.bubbles.push(new Bubble(
-    //         this.ctx,
-    //         col * this.BUBBLE_WIDTH,
-    //         row * this.BUBBLE_HEIGHT,
-    //         this.BUBBLE_WIDTH,
-    //         this.BUBBLE_HEIGHT
-    //       ))
-    //     }
-    //   }
-    // }
-
-    //create a function that returns a random number between 0 and canvas.width
-    // for loop to add x new Bubbles to this.bubbles array. new Bubble( randomX, randomY, width, heigh,radius)
 
     function getRandomNumber(maxSize) {
       var randomNumber = Math.floor(Math.random() * maxSize)
@@ -33,7 +15,7 @@ class Game {
     var level2Bubbles = 15
 
     for (var i = 0; i <= 10; i++) {
-      this.bubbles.push(new Bubble(this.ctx, getRandomNumber(canvas.width), getRandomNumber(canvas.width), 60, 60, 50))
+      this.bubbles.push(new Bubble(this.ctx, getRandomNumber(canvas.width), getRandomNumber(canvas.height), 60, 60, 50))
     }
 
 
@@ -99,28 +81,50 @@ class Game {
     if (this.keys && this.keys[38]) { this.player.speed = 10; }
     if (this.keys && this.keys[40]) { this.player.speed = -10; }
     this.player.update();
-    // for (var iplayer = 0; iplayer < this.player.length; iplayer++) {
-    //   this.player[iplayer].update()
-    // this.checkPlayerEnemyCollisionAndUpdate(this.player, this.enemy)
-    for (var iBUBBLE = this.bubbles.length - 1; iBUBBLE >= 0; iBUBBLE--) {
-      // if (this.checkPlayerBubbleCollisionAndUpdate(this.player, this.bubbles[iBUBBLE])) {
-      //   console.log("DELETE", iBUBBLE)
-      //   this.bubbles.splice(iBUBBLE, 1)
-      //   // }
-      // }
+
+    if (this.player.crashWith(this.enemy)) {
+      console.log("crashed with enemy")
     }
 
+    for (var i = 0; i < this.bubbles.length; i++) {
+      if (this.player.crashWith(this.bubbles[i])) {
+        console.log("crashed with bubble index", i)
+        this.bubbles.splice(i, 1)
+      } else {
+        console.log("not crashing")
+
+      }
+    }
   }
+
+
+  // // ========== Pop bubbles ================================
+  // // Return true if there is a collision
+  // checkPlayerBubbleCollisionAndUpdate(player, bubble) {
+  //   // Check with the bottom and top part of the  brick
+  //   if ((Math.abs(bubble.bottom() - player.y) < player.radius || Math.abs(bubble.top() - player.y) < player.radius) && bubble.left() < player.x && player.x < bubble.right()) {
+  //     player.bounceHorizontally()
+  //     return true
+  //   }
+  //   if ((Math.abs(bubble.left() - player.x) < player.radius || Math.abs(bubble.right() - player.x) < player.radius) && bubble.top() < player.y && player.y < bubble.bottom()) {
+  //     // player.bounceVertically()
+  //     return false
+  //   }
+  // }
+}
 
   // checkPlayerEnemyCollisionAndUpdate(player, enemy) {
   //   if (enemy.left() < player.x && player.x < enemy.right() && enemy.top() < player.bottom() && player.y < enemy.top()) {
-  //     var factor = 2 * (player.x - enemy.center().x) / enemy.width // Number between -1 and 1
+  //     var factor = 2 * (player.x - enemy.center().x) / enemy.radius // Number between -1 and 1
   //     var maxAngle = 0.9 * Math.PI / 2
   //     var enemyAngle = -Math.PI / 2 + factor * maxAngle
   //     player.angle = (-player.angle + enemyAngle) / 2
   //     player.y = enemy.top() - player.radius
   //   }
   // }
+
+
+
 
   // // Return true if there is a collision
   // checkPlayerBubbleCollisionAndUpdate(player, bubble) {
@@ -135,6 +139,4 @@ class Game {
   //   }
   //   return false
   // }
-
-}
 

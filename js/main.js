@@ -9,7 +9,7 @@ $('#play').click(function () {
   if (game) {
     game.stop()
   }
-  game = new Game(ctx, levels[0].grid)
+  game = new Game(ctx)    //(ctx, levels[0].grid)
   game.start()
 
   window.addEventListener('keydown', function (e) {

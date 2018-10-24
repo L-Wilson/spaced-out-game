@@ -1,9 +1,11 @@
 class Bubble {
-  constructor(ctx, x, y, width, height, radius) {
+  constructor(ctx, x, y, radius) {
     this.ctx = ctx
     this.x = x
     this.y = y
     this.radius = radius
+    this.height = this.radius * 2
+    this.width = this.radius * 2
   }
   top() { return this.y }
   bottom() { return this.y + this.height }
@@ -21,9 +23,3 @@ class Bubble {
   //update()
 
 }
-
-this.ctx.save()
-this.ctx.fillStyle = "skyblue"
-this.ctx.strokeRect(this.x, this.y, this.width, this.height)
-this.ctx.fillRect(this.x, this.y, this.width, this.height)
-ctx.restore()
