@@ -11,6 +11,15 @@ $('#play').click(function () {
   }
   game = new Game(ctx, levels[0].grid)
   game.start()
+
+  window.addEventListener('keydown', function (e) {
+    e.preventDefault();
+    game.keys = (game.keys || []);
+    game.keys[e.keyCode] = (e.type == "keydown");
+  })
+  window.addEventListener('keyup', function (e) {
+    game.keys[e.keyCode] = (e.type == "keydown");
+  })
 })
 
 
