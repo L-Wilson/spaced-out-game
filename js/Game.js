@@ -1,6 +1,6 @@
 
 var score = 0;
-
+var gameOver = false;
 
 class Game {
   constructor(ctx) {
@@ -16,20 +16,24 @@ class Game {
     }
 
 
-    // if score less than 100 ...
-    for (var i = 0; i <= 10; i++) {
-      this.bubbles.push(new Bubble(this.ctx, getRandomNumber(canvas.width), getRandomNumber(canvas.height), 60, 60, 50))
-    }
-    // else if score less than 300 ...
-    for (var i = 0; i <= 10; i++) {
-      this.bubbles.push(new Bubble(this.ctx, getRandomNumber(canvas.width), getRandomNumber(canvas.height), 60, 60, 50))
-    }
 
+
+    if (score < 200) {
+      for (var i = 0; i < 10; i++) {
+        this.bubbles.push(new Bubble(this.ctx, getRandomNumber(canvas.width), getRandomNumber(canvas.height), 60))
+      }
+    } else if (score >= 200 && score < 300) {
+      for (var i = 0; i < 10; i++) {
+        this.bubbles.push(new Bubble(this.ctx, getRandomNumber(canvas.width), getRandomNumber(canvas.height), 60))
+      }
+    }
     // Player:                   ctx, width, height, color, x, y
     this.player = new Player(this.ctx, 80, 80, "red", 900, 700)
     // Enemy:                       ctx, x, y, radius, vx, vy, color
     this.enemy = new Enemy(this.ctx, 100, 600, 90, 4, 4, "chartreuse")
-    this.score = 0
+    //this.score = 0
+
+    // this.enemy = new Player(this.ctx, 200, 200, "blue", 500, 200)
   }
 
 
@@ -55,20 +59,25 @@ class Game {
     this.player.draw()
     this.enemy.draw()
 
+    // Draw score
     this.ctx.save()
-    this.ctx.font = "20px Arial";
-    this.ctx.fillStyle = "#FFF";
+    this.ctx.font = "80px Arial black";
+    this.ctx.fillStyle = "black";
     this.ctx.textAlign = "right"
-    this.ctx.fillText("Score: " + score, canvas.width - 120, 30);
-    this.ctx.fillText("Level 1", 30, 30);
+    this.ctx.fillText(score, canvas.width - 50, canvas.height - 700);
     this.ctx.restore()
 
-    // Draw of lives
-    // this.ctx.save()
-    // this.ctx.font = "30px sans-serif"
-    // this.ctx.textAlign = "right"
-    // this.ctx.fillText("Lives: " + this.lives, this.ctx.canvas.width - 5, 30)
-    // this.ctx.restore()
+    if (gameOver) {
+      this.stop()
+      this.ctx.font = "80px Arial black";
+      this.ctx.fillStyle = "black";
+      this.ctx.textAlign = "right"
+      this.ctx.fillText("Game over", canvas.width / 2, canvas.height / 2);
+    }
+
+
+
+
   }
 
   update() {
@@ -76,21 +85,50 @@ class Game {
     this.enemy.update()
     this.player.moveAngle = 0;
     this.player.speed = 0;
-    if (this.keys && this.keys[37]) { this.player.moveAngle = -5; }
-    if (this.keys && this.keys[39]) { this.player.moveAngle = 5; }
-    if (this.keys && this.keys[38]) { this.player.speed = 10; }
-    if (this.keys && this.keys[40]) { this.player.speed = -10; }
+    if (this.keys && this.keys[37]) { this.player.x -= 5; }
+    if (this.keys && this.keys[39]) { this.player.x += 5; }
+    if (this.keys && this.keys[38]) { this.player.y -= 5 }
+    if (this.keys && this.keys[40]) { this.player.y += 5 }
+    // if (this.keys && this.keys[37]) { this.player.moveAngle = -5; }
+    // if (this.keys && this.keys[39]) { this.player.moveAngle = 5; }
+    // if (this.keys && this.keys[38]) { this.player.speed = 10; }
+    // if (this.keys && this.keys[40]) { this.player.speed = -10; }
     this.player.update();
 
     // ===================== Enemy collision / Game Over ============== //
-    if (this.player.crashWith(this.enemy)) {
-      // console.log("crashed with enemy")
-      this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+    if (this.player.crashWithBall(this.enemy)) {
+      console.log("crashed with enemy")
+      console.log(this.player)
+      console.log(this.enemy)
+      // this.stop();
+      // return;
+
+      gameOver = true;
+
+
+      // function gameOver() {
+      // this.ctx.save()
+
+      // this.ctx.restore()
+      // }
+
+
+
+
+      // this.ctx.save()
+
+      // this.ctx.font = "80px Arial black";
+      // this.ctx.fillStyle = "black";
+      // this.ctx.textAlign = "right"
+      // this.ctx.fillText("GAME OVER", canvas.height / 2, canvas.width / 2);
+      // //this.ctx.fillText("OVER" canvas.width - 350, canvas.height - 350);
+      // this.ctx.restore()
     }
 
-    // ===================== Bubble collision / Game Over ============== //
+
+    // ===================== Bubble collision ============== //
     for (var i = 0; i < this.bubbles.length; i++) {
-      if (this.player.crashWith(this.bubbles[i])) {
+      if (this.player.crashWithBall(this.bubbles[i])) {
         // console.log("crashed with bubble index", i)
         this.bubbles.splice(i, 1)
         score += 10;
@@ -99,11 +137,5 @@ class Game {
       }
     }
 
-    // ===================== Level up ============== //
-    if (this.bubbles === []) {
-      // next level!
-      this.update()
-
-    }
   }
 }

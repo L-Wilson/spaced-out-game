@@ -12,12 +12,13 @@ class Player {
     this.y = y;
   }
   draw() {
-    this.ctx.save();
-    this.ctx.translate(this.x, this.y);
-    this.ctx.rotate(this.angle);
+    // this.ctx.save();
+    // this.ctx.translate(this.x, this.y);
+    // this.ctx.rotate(this.angle);
     this.ctx.fillStyle = this.color;
-    this.ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
-    this.ctx.restore();
+    // this.ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+    // this.ctx.restore();
   }
   update() {
     if (this.y > canvas.height) {
@@ -38,11 +39,21 @@ class Player {
     //   this.x = canvas.width;
     // }
     this.ctx = ctx
-    this.angle += this.moveAngle * Math.PI / 180;
-    this.x += this.speed * Math.sin(this.angle);
-    this.y -= this.speed * Math.cos(this.angle);
+    // this.angle += this.moveAngle * Math.PI / 180;
+    // this.x += this.speed * Math.sin(this.angle);
+    // this.y -= this.speed * Math.cos(this.angle);
   }
+  crashWithBall(ball) {
+    var crash = false;
+    if (this.x + this.width + ball.radius > ball.x
+      && this.x < ball.x + ball.radius
+      && this.y + this.height + ball.radius > ball.y
+      && this.y < ball.y + ball.radius) {
+      crash = true;
+    }
+    return crash;
 
+  }
   crashWith(otherobj) {
     var myleft = this.x;
     var myright = this.x + (this.width);

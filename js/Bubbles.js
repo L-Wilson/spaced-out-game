@@ -18,6 +18,10 @@ class Bubble {
     this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, true)
     this.ctx.fill()
     this.ctx.restore()
+    // this.ctx.save()
+    // this.ctx.fillStyle = "red"
+    // this.ctx.fillRect(this.x, this.y, this.width, this.height)
+    // this.ctx.restore()
   }
 
   //update()
