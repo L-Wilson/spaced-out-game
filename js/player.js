@@ -20,12 +20,23 @@ class Player {
     this.ctx.restore();
   }
   update() {
-    if (this.y + this.vy > canvas.height || this.y + this.vy < 0) {
-      this.vy *= -1;
+    if (this.y > canvas.height) {
+      this.y = 0;
+    } else if (this.y < 0) {
+      this.y = canvas.height;
     }
-    if (this.x + this.vx > canvas.width || this.x + this.vx < 0) {
-      this.vx *= -1;
+
+    if (this.x > canvas.width) {
+      this.x = 0;
+    } else if (this.x < 0) {
+      this.x = canvas.width;
     }
+
+    // if (this.x > canvas.width || this.x < 0) {
+    //   this.x = 0;
+    // } else if (this.x < 0) {
+    //   this.x = canvas.width;
+    // }
     this.ctx = ctx
     this.angle += this.moveAngle * Math.PI / 180;
     this.x += this.speed * Math.sin(this.angle);
@@ -53,3 +64,9 @@ class Player {
 }
 
 
+// if (this.y + this.vy > canvas.height || this.y + this.vy < 0) {
+//   this.vy *= -1;
+// }
+// if (this.x + this.vx > canvas.width || this.x + this.vx < 0) {
+//   this.vx *= -1;
+// }
