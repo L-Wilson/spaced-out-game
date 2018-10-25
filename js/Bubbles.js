@@ -1,8 +1,9 @@
 class Bubble {
-  constructor(ctx, x, y, radius) {
+  constructor(ctx, x, y, radius, color) {
     this.ctx = ctx
     this.x = x
     this.y = y
+    this.color = color
     this.radius = radius
     this.height = this.radius * 2
     this.width = this.radius * 2
@@ -14,7 +15,7 @@ class Bubble {
   draw() {
     this.ctx.save()
     this.ctx.beginPath()
-    this.ctx.fillStyle = "skyblue"
+    this.ctx.fillStyle = this.color
     this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, true)
     this.ctx.fill()
     this.ctx.restore()

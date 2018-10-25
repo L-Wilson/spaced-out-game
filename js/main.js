@@ -10,8 +10,9 @@ $('#play').click(function () {
   if (game) {
     game.stop()
   }
-  game = new Game(ctx)    //(ctx, levels[0].grid)
+  game = new Game(ctx)
   game.start()
+
 
   window.addEventListener('keydown', function (e) {
     e.preventDefault();
