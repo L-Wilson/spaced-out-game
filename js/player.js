@@ -2,6 +2,8 @@
 class Player {
   constructor(ctx, width, height, color, x, y) {
     this.ctx = ctx
+    this.img = new Image()
+    this.img.src = "./imgs/player.png"
     this.width = width;
     this.height = height;
     this.speed = 0;
@@ -15,9 +17,10 @@ class Player {
     // this.ctx.save();
     // this.ctx.translate(this.x, this.y);
     // this.ctx.rotate(this.angle);
-    this.ctx.fillStyle = this.color;
+    // this.ctx.fillStyle = this.color;
     // this.ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
-    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+    this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+    // this.ctx.fillRect(this.x, this.y, this.width, this.height);
     // this.ctx.restore();
   }
   update() {

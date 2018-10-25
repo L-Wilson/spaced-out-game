@@ -6,6 +6,15 @@ var score
 
 
 $('#play').click(function () {
+
+  if (gameOver === true) {
+
+    game = new Game(ctx)
+    game.start()
+    score = 0
+
+    return gameOver = false
+  }
   if (game) {
     game.stop()
   }
