@@ -5,7 +5,6 @@ var game
 var score
 
 
-
 $('#play').click(function () {
   if (game) {
     game.stop()

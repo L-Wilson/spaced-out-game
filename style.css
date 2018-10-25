@@ -1,4 +1,8 @@
- canvas{
+ canvas {
+  background-image: url("imgs/stars.png");
+} 
+
+canvas {
   border: 3px solid lightblue;
   max-width: 100%;
   display: block;

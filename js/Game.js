@@ -13,8 +13,10 @@ class Game {
     this.player = new Player(this.ctx, 80, 80, "red", 900, 700);
     // Enemy:                       ctx, x, y, radius, vx, vy, color
     this.enemy = new Enemy(this.ctx, 100, 600, 90, 4, 4, "chartreuse");
-    this.enemy2 = new Enemy(this.ctx, 10, 200, 30, 4, 4, "pink");
-    this.enemy3 = new Enemy(this.ctx, 400, 400, 30, 4, 4, "red");
+    this.enemy2 = new Enemy(this.ctx, 10, 200, 30, 5, 6, "pink");
+    this.enemy3 = new Enemy(this.ctx, 500, 100, 50, 3, 3, "red");
+    this.enemy4 = new Enemy(this.ctx, 0, 60, 70, 3, 3, "violet");
+    this.enemy5 = new Enemy(this.ctx, 300, 10, 70, 3, 5, "maroon");
 
     //this.score = 0
 
@@ -52,7 +54,7 @@ class Game {
     // Draw score
     this.ctx.save();
     this.ctx.font = "80px Arial black";
-    this.ctx.fillStyle = "black";
+    this.ctx.fillStyle = "#FFF";
     this.ctx.textAlign = "right";
     this.ctx.fillText(score, canvas.width - 50, canvas.height - 700);
     this.ctx.restore();
@@ -144,6 +146,11 @@ class Game {
       }
     }
 
+    if (score >= 300 && score < 400) {
+      this.enemy2.draw()
+      this.enemy3.draw()
+      this.enemy4.draw()
+    }
 
     // =================== LEVEL 4 ==================== //
     else if (score >= 400 && score < 500 && this.bubbles.length === 0) {
@@ -160,6 +167,12 @@ class Game {
         console.log(this.bubbles);
       }
     }
+    if (score >= 400 && score < 500) {
+      this.enemy2.draw()
+      this.enemy3.draw()
+      this.enemy4.draw()
+      this.enemy5.draw()
+    }
   }
 
   update() {
@@ -168,6 +181,8 @@ class Game {
     this.enemy.update();
     this.enemy2.update();
     this.enemy3.update();
+    this.enemy4.update();
+    this.enemy5.update();
     this.player.moveAngle = 0;
     this.player.speed = 0;
     if (this.keys && this.keys[37]) {
@@ -215,7 +230,14 @@ class Game {
     }
     if (this.player.crashWithBall(this.enemy2) && score >= 100 && score < 200) {
       gameOver = true;
-    } if (this.player.crashWithBall(this.enemy3) && score >= 200 && score < 300) {
+    }
+    if (this.player.crashWithBall(this.enemy3) && score >= 200 && score < 300) {
+      gameOver = true;
+    }
+    if (this.player.crashWithBall(this.enemy4) && score >= 300 && score < 400) {
+      gameOver = true;
+    }
+    if (this.player.crashWithBall(this.enemy5) && score >= 400 && score < 500) {
       gameOver = true;
     }
     // ===================== Bubble collision ======================== //
