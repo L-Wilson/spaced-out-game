@@ -17,27 +17,38 @@ class Player {
     this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
   }
   update() {
-    if (this.y > canvas.height) {
+    if (this.y > canvas.height - 8) {
       this.y = 0;
     } else if (this.y < 0) {
       this.y = canvas.height;
     }
 
-    if (this.x > canvas.width) {
+    if (this.x > canvas.width - 8) {
       this.x = 0;
     } else if (this.x < 0) {
       this.x = canvas.width;
     }
 
     this.ctx = ctx
-  }
 
+  }
   crashWithBall(ball) {
     var crash = false;
     if (this.x + this.width + ball.radius > ball.x
       && this.x < ball.x + ball.radius
       && this.y + this.height + ball.radius > ball.y
       && this.y < ball.y + ball.radius) {
+      crash = true;
+    }
+    return crash;
+
+  }
+  crashWithEnemy(enemy) {
+    var crash = false;
+    if (this.x + this.width / 1.2 > enemy.x
+      && this.x < enemy.x + enemy.width / 1.2
+      && this.y + this.height / 1.2 > enemy.y
+      && this.y < enemy.y + enemy.height / 1.2) {
       crash = true;
     }
     return crash;
@@ -62,3 +73,5 @@ class Player {
     return crash;
   }
 }
+
+

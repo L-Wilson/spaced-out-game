@@ -1,12 +1,12 @@
 // from codepen
 class Enemy {
-  constructor(ctx, x, y, width, height, vx, vy, color, img) {
+  constructor(ctx, x, y, width, height, vx, vy, color, img, radius) {
     this.ctx = ctx
     this.x = x
     this.y = y
     this.width = width
     this.height = height
-    //this.radius = radius
+    this.radius = radius
     this.vx = vx
     this.vy = vy
     this.img = new Image()
@@ -23,10 +23,10 @@ class Enemy {
     // ctx.fill();
   }
 
-  top() { return this.y - this.radius }
-  bottom() { return this.y + this.radius }
-  left() { return this.x - this.radius }
-  right() { return this.x + this.radius }
+  top() { return this.y }
+  bottom() { return this.y + this.height }
+  left() { return this.x }
+  right() { return this.x + this.width }
 
   update() {
     this.x += this.vx;

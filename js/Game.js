@@ -12,9 +12,9 @@ class Game {
     // Player:                   ctx, width, height, color, x, y
     this.player = new Player(this.ctx, 150, 150, "red", 900, 700);
     // Enemy:                       ctx, x, y, radius, vx, vy, color
-    this.enemy = new Enemy(this.ctx, 100, 600, 200, 200, 4, 4, "chartreuse", "../imgs/green-planet.png");
-    this.enemy2 = new Enemy(this.ctx, 10, 200, 70, 70, 5, 6, "pink", "../imgs/pink-planet.png");
-    this.enemy3 = new Enemy(this.ctx, 500, 300, 50, 3, 3, "red");
+    this.enemy = new Enemy(this.ctx, 100, 600, 200, 200, 4, 4, "chartreuse", "../imgs/green-planet.png", 100);
+    this.enemy2 = new Enemy(this.ctx, 10, 200, 90, 90, 5, 6, "pink", "../imgs/pink-planet.png", 30);
+    this.enemy3 = new Enemy(this.ctx, 500, 300, 120, 120, 3, 3, "red", "../imgs/red-planet.png", 30);
     this.enemy4 = new Enemy(this.ctx, 0, 60, 70, 3, 3, "violet");
     this.enemy5 = new Enemy(this.ctx, 300, 10, 70, 5, 5, "maroon");
     this.enemy6 = new Enemy(this.ctx, 250, 0, 100, 4, 5, "blue");
@@ -170,6 +170,8 @@ class Game {
       this.enemy6.draw()
     }
 
+
+    // ====================== if GAME OVER ====================== //
     if (gameOver) {
       this.stop();
       this.ctx.font = "700 120px Comfortaa";
@@ -178,6 +180,7 @@ class Game {
       this.ctx.fillText("GAME OVER", canvas.width - 200, canvas.height - 350);
     }
   }
+
   getRandomNumber(maxSize) {
     var randomNumber = Math.floor(Math.random() * maxSize);
     return randomNumber;
@@ -214,7 +217,7 @@ class Game {
     this.player.update();
 
     // ===================== Enemy collision / Game Over ============== //
-    if (this.player.crashWithBall(this.enemy)) {
+    if (this.player.crashWithEnemy(this.enemy)) {
       console.log("crashed with enemy");
       console.log(this.player);
       gameOver = true;
