@@ -15,8 +15,8 @@ class Game {
     this.enemy = new Enemy(this.ctx, 100, 600, 200, 200, 4, 4, "chartreuse", "../imgs/green-planet.png", 100);
     this.enemy2 = new Enemy(this.ctx, 10, 200, 90, 90, 5, 6, "pink", "../imgs/pink-planet.png", 30);
     this.enemy3 = new Enemy(this.ctx, 500, 300, 120, 120, 3, 3, "red", "../imgs/red-planet.png", 30);
-    this.enemy4 = new Enemy(this.ctx, 0, 60, 70, 3, 3, "violet");
-    this.enemy5 = new Enemy(this.ctx, 300, 10, 70, 5, 5, "maroon");
+    this.enemy4 = new Enemy(this.ctx, 0, 60, 110, 110, 3, 3, "violet", "../imgs/violet-planet.png", 30);
+    this.enemy5 = new Enemy(this.ctx, 300, 130, 130, 5, 5, "blue", "../imgs/blue-planet.png", 30);
     this.enemy6 = new Enemy(this.ctx, 250, 0, 100, 4, 5, "blue");
   }
 
