@@ -222,19 +222,19 @@ class Game {
       console.log(this.player);
       gameOver = true;
     }
-    if (this.player.crashWithBall(this.enemy2) && score >= 100 && score < 200) {
+    if (this.player.crashWithEnemy(this.enemy2) && score >= 100 && score < 200) {
       gameOver = true;
     }
-    if (this.player.crashWithBall(this.enemy3) && score >= 200 && score < 300) {
+    if (this.player.crashWithEnemy(this.enemy3) && score >= 200 && score < 300) {
       gameOver = true;
     }
-    if (this.player.crashWithBall(this.enemy4) && score >= 300 && score < 400) {
+    if (this.player.crashWithEnemy(this.enemy4) && score >= 300 && score < 400) {
       gameOver = true;
     }
-    if (this.player.crashWithBall(this.enemy5) && score >= 400 && score < 500) {
+    if (this.player.crashWithEnemy(this.enemy5) && score >= 400 && score < 500) {
       gameOver = true;
     }
-    if (this.player.crashWithBall(this.enemy6) && score >= 500 && score < 600) {
+    if (this.player.crashWithEnemy(this.enemy6) && score >= 500 && score < 600) {
       gameOver = true;
     }
     // ===================== Bubble collision ======================== //

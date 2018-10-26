@@ -27,7 +27,7 @@ canvas {
   max-width: 100%;
   display: block;
   margin: 0 auto;
-  margin-top: -15px;
+  margin-top: 5px;
 } 
 
 #play {
@@ -68,10 +68,18 @@ canvas {
 }
 
 #how-to {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: white;
   font-size: 1em;
   letter-spacing: .2em;
   font-weight: 700;
+  height: 130px;
+}
+
+#how-to img {
+  
 }
 
 footer {
