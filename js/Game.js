@@ -10,13 +10,14 @@ class Game {
     this.enemyBall = [];
 
     // Player:                   ctx, width, height, color, x, y
-    this.player = new Player(this.ctx, 80, 80, "red", 900, 700);
+    this.player = new Player(this.ctx, 150, 150, "red", 900, 700);
     // Enemy:                       ctx, x, y, radius, vx, vy, color
-    this.enemy = new Enemy(this.ctx, 100, 600, 90, 4, 4, "chartreuse");
-    this.enemy2 = new Enemy(this.ctx, 10, 200, 40, 5, 6, "pink");
-    this.enemy3 = new Enemy(this.ctx, 500, 100, 50, 3, 3, "red");
+    this.enemy = new Enemy(this.ctx, 100, 600, 200, 200, 4, 4, "chartreuse", "../imgs/green-planet.png");
+    this.enemy2 = new Enemy(this.ctx, 10, 200, 70, 70, 5, 6, "pink", "../imgs/pink-planet.png");
+    this.enemy3 = new Enemy(this.ctx, 500, 300, 50, 3, 3, "red");
     this.enemy4 = new Enemy(this.ctx, 0, 60, 70, 3, 3, "violet");
-    this.enemy5 = new Enemy(this.ctx, 300, 10, 70, 3, 5, "maroon");
+    this.enemy5 = new Enemy(this.ctx, 300, 10, 70, 5, 5, "maroon");
+    this.enemy6 = new Enemy(this.ctx, 250, 0, 100, 4, 5, "blue");
   }
 
   start() {
@@ -41,7 +42,7 @@ class Game {
     // Draw score
     this.ctx.save();
 
-    this.ctx.font = "80px Comfortaa";
+    this.ctx.font = "bold 80px Comfortaa";
     this.ctx.fillStyle = "#FFF";
     this.ctx.textAlign = "right";
     this.ctx.fillText(score, canvas.width - 50, canvas.height - 700);
@@ -66,6 +67,7 @@ class Game {
       // ====================== LEVEL 1 ====================== //
     } else if (score >= 100 && score < 200 && this.bubbles.length === 0) {
       for (var i = 0; i < 10; i++) {
+        console.log("level 2")
         this.bubbles.push(
           new Bubble(
             this.ctx,
@@ -90,7 +92,7 @@ class Game {
             this.getRandomNumber(canvas.width),
             this.getRandomNumber(canvas.height),
             60,
-            "coral"
+            "orange"
           )
         );
         console.log(this.bubbles);
@@ -110,7 +112,7 @@ class Game {
             this.getRandomNumber(canvas.width),
             this.getRandomNumber(canvas.height),
             60,
-            "#38D9D4"
+            "springgreen"
           )
         );
         console.log(this.bubbles);
@@ -144,6 +146,30 @@ class Game {
       this.enemy4.draw()
       this.enemy5.draw()
     }
+
+    // =================== LEVEL 5 ==================== //
+    else if (score >= 500 && score < 600 && this.bubbles.length === 0) {
+      for (var i = 0; i < 10; i++) {
+        this.bubbles.push(
+          new Bubble(
+            this.ctx,
+            this.getRandomNumber(canvas.width),
+            this.getRandomNumber(canvas.height),
+            60,
+            "pink"
+          )
+        );
+        console.log(this.bubbles);
+      }
+    }
+    if (score >= 500 && score < 600) {
+      this.enemy2.draw()
+      this.enemy3.draw()
+      this.enemy4.draw()
+      this.enemy5.draw()
+      this.enemy6.draw()
+    }
+
     if (gameOver) {
       this.stop();
       this.ctx.font = "700 120px Comfortaa";
@@ -165,20 +191,22 @@ class Game {
     this.enemy3.update();
     this.enemy4.update();
     this.enemy5.update();
-    // this.player.moveAngle = 0;
-    // this.player.speed = 0;
+    this.enemy6.update();
+
     if (this.keys && this.keys[37]) {
-      this.player.x -= 16;
+      this.player.x -= 17;
     }
     if (this.keys && this.keys[39]) {
-      this.player.x += 16;
+      this.player.x += 17;
     }
     if (this.keys && this.keys[38]) {
-      this.player.y -= 16;
+      this.player.y -= 17;
     }
     if (this.keys && this.keys[40]) {
-      this.player.y += 16;
+      this.player.y += 17;
     }
+
+
     // if (this.keys && this.keys[37]) { this.player.moveAngle = -5; }
     // if (this.keys && this.keys[39]) { this.player.moveAngle = 5; }
     // if (this.keys && this.keys[38]) { this.player.speed = 10; }
@@ -203,12 +231,30 @@ class Game {
     if (this.player.crashWithBall(this.enemy5) && score >= 400 && score < 500) {
       gameOver = true;
     }
+    if (this.player.crashWithBall(this.enemy6) && score >= 500 && score < 600) {
+      gameOver = true;
+    }
     // ===================== Bubble collision ======================== //
-    for (var i = 0; i < this.bubbles.length; i++) {
-      if (this.player.crashWithBall(this.bubbles[i])) {
-        this.bubbles.splice(i, 1);
+    var indexArray = []
+    for (var i = this.bubbles.length - 1; i >= 0; --i) {
+      if (this.player.crashWithBall(this.bubbles[i]) && !this.bubbles[i].crashed) {
+        for (var a = 0; a < this.bubbles[i].lines.length; a++) {
+          popDistance = this.bubbles[i].radius * 0.4;
+          this.bubbles[i].lines[a].popping = true;
+          this.bubbles[i].popping = true;
+        }
+        this.bubbles[i].crashed = true;
         score += 10;
+        this.removeBubble()
       }
     }
+  }
+
+  removeBubble() {
+    setTimeout(() => {
+      console.log(this.bubbles)
+      this.bubbles = this.bubbles.filter((el) => { return el.crashed ? false : true })
+    }, 100)
+
   }
 }

@@ -14,14 +14,7 @@ class Player {
     this.y = y;
   }
   draw() {
-    // this.ctx.save();
-    // this.ctx.translate(this.x, this.y);
-    // this.ctx.rotate(this.angle);
-    // this.ctx.fillStyle = this.color;
-    // this.ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
     this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-    // this.ctx.fillRect(this.x, this.y, this.width, this.height);
-    // this.ctx.restore();
   }
   update() {
     if (this.y > canvas.height) {
@@ -36,16 +29,9 @@ class Player {
       this.x = canvas.width;
     }
 
-    // if (this.x > canvas.width || this.x < 0) {
-    //   this.x = 0;
-    // } else if (this.x < 0) {
-    //   this.x = canvas.width;
-    // }
     this.ctx = ctx
-    // this.angle += this.moveAngle * Math.PI / 180;
-    // this.x += this.speed * Math.sin(this.angle);
-    // this.y -= this.speed * Math.cos(this.angle);
   }
+
   crashWithBall(ball) {
     var crash = false;
     if (this.x + this.width + ball.radius > ball.x
@@ -76,11 +62,3 @@ class Player {
     return crash;
   }
 }
-
-
-// if (this.y + this.vy > canvas.height || this.y + this.vy < 0) {
-//   this.vy *= -1;
-// }
-// if (this.x + this.vx > canvas.width || this.x + this.vx < 0) {
-//   this.vx *= -1;
-// }

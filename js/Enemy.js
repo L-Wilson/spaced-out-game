@@ -1,21 +1,26 @@
 // from codepen
 class Enemy {
-  constructor(ctx, x, y, radius, vx, vy, color) {
+  constructor(ctx, x, y, width, height, vx, vy, color, img) {
     this.ctx = ctx
     this.x = x
     this.y = y
-    this.radius = radius
+    this.width = width
+    this.height = height
+    //this.radius = radius
     this.vx = vx
     this.vy = vy
+    this.img = new Image()
+    this.img.src = img
     this.color = color
   }
 
   draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.fillStyle = this.color;
-    ctx.fill();
+    this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+    // ctx.beginPath();
+    // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+    // ctx.closePath();
+    // ctx.fillStyle = this.color;
+    // ctx.fill();
   }
 
   top() { return this.y - this.radius }
