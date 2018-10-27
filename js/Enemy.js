@@ -1,12 +1,11 @@
 // from codepen
 class Enemy {
-  constructor(ctx, x, y, width, height, vx, vy, color, img, radius) {
+  constructor(ctx, x, y, width, height, vx, vy, color, img) {
     this.ctx = ctx
     this.x = x
     this.y = y
     this.width = width
     this.height = height
-    this.radius = radius
     this.vx = vx
     this.vy = vy
     this.img = new Image()

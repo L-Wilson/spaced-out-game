@@ -3,6 +3,7 @@
  * {
   font-family: 'Comfortaa';
   font-weight: 700;
+  color: #f2f4ff;
  }
  
  body {
@@ -39,7 +40,11 @@ canvas {
   font-weight: 700;
   margin-bottom: 100px;
   margin-top: 35px;
+  outline: none;
+  box-shadow: 0 10px 20px -10px rgba(0,0,0,1);
+  letter-spacing: .2em;
 }
+
 
 .navbar {
   height: 70px;
@@ -53,14 +58,14 @@ canvas {
   letter-spacing: .2em;
 }
 
-.wha {
+.huh {
   display: inline-block;
   text-align: right;
 }
 
 
-.wha a {
-  color: white;
+.huh a {
+  color: #f2f4ff;
   font-size: 1em;
   letter-spacing: .2em;
   text-decoration: none;
@@ -70,7 +75,7 @@ canvas {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
+  color: #f2f4ff;
   font-size: 1em;
   letter-spacing: .2em;
   font-weight: 700;
@@ -78,7 +83,18 @@ canvas {
 }
 
 #how-to img {
+  margin-left: 60px;
+  margin-right: 40px;
+}
+
+.text-left {
+  margin-left: 20px;
   
+}
+
+.text-right {
+  margin-right: 20px;
+  text-align: left!important;
 }
 
 footer {

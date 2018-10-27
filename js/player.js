@@ -7,8 +7,6 @@ class Player {
     this.width = width;
     this.height = height;
     this.speed = 0;
-    this.angle = 0;
-    this.moveAngle = 0;
     this.color = color;
     this.x = x;
     this.y = y;
@@ -16,22 +14,23 @@ class Player {
   draw() {
     this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
   }
+
   update() {
-    if (this.y > canvas.height - 8) {
+    if (this.y > canvas.height - 3) {
       this.y = 0;
     } else if (this.y < 0) {
       this.y = canvas.height;
     }
 
-    if (this.x > canvas.width - 8) {
+    if (this.x > canvas.width - 3) {
       this.x = 0;
     } else if (this.x < 0) {
       this.x = canvas.width;
     }
 
     this.ctx = ctx
-
   }
+
   crashWithBall(ball) {
     var crash = false;
     if (this.x + this.width + ball.radius > ball.x
