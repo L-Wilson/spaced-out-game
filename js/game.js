@@ -10,12 +10,12 @@ class Game {
     // Player:                   ctx, width, height, color, x, y
     this.player = new Player(this.ctx, 150, 150, "red", 900, 600);
     // Enemy:                       ctx, x, y, radius, vx, vy, color
-    this.enemy = new Enemy(this.ctx, 100, 600, 200, 200, 4, 4, "chartreuse", "../imgs/green-planet.png");
-    this.enemy2 = new Enemy(this.ctx, 10, 200, 90, 90, 5, 6, "pink", "../imgs/pink-planet.png");
-    this.enemy3 = new Enemy(this.ctx, 500, 300, 120, 120, 5, 3, "blue", "../imgs/blue-planet.png");
-    this.enemy4 = new Enemy(this.ctx, 250, 0, 140, 140, 2, 5, "red", "../imgs/red-planet.png");
-    this.enemy5 = new Enemy(this.ctx, 0, 60, 110, 110, 3, 3, "violet", "../imgs/violet-planet.png");
-    this.enemy6 = new Enemy(this.ctx, 300, 130, 95, 95, 5, 5, "orange", "../imgs/orange-planet.png");
+    this.enemy = new Enemy(this.ctx, 100, 600, 200, 200, 4, 4, "chartreuse", "imgs/green-planet.png");
+    this.enemy2 = new Enemy(this.ctx, 10, 200, 90, 90, 5, 6, "pink", "imgs/pink-planet.png");
+    this.enemy3 = new Enemy(this.ctx, 500, 300, 120, 120, 5, 3, "blue", "imgs/blue-planet.png");
+    this.enemy4 = new Enemy(this.ctx, 250, 0, 140, 140, 2, 5, "red", "imgs/red-planet.png");
+    this.enemy5 = new Enemy(this.ctx, 0, 60, 110, 110, 3, 3, "violet", "imgs/violet-planet.png");
+    this.enemy6 = new Enemy(this.ctx, 300, 130, 95, 95, 5, 5, "orange", "imgs/orange-planet.png");
   }
 
   start() {
