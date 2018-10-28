@@ -3,8 +3,6 @@ var gameOver = false;
 
 class Game {
   constructor(ctx) {
-    this.PLAYER_RADIUS = this.BUBBLE_HEIGHT / 2;
-
     this.ctx = ctx;
     this.bubbles = [];
     this.enemyBall = [];

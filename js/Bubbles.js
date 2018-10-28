@@ -1,44 +1,13 @@
-// class Bubble {
-//   constructor(ctx, x, y, radius, color) {
-//     // this.ctx = ctx
-//     // // this.x = x
-//     // // this.y = y
-//     // this.color = color
-//     // this.radius = radius
-//     // this.height = this.radius * 2
-//     // this.width = this.radius * 2
-//   }
-//   top() { return this.y }
-//   bottom() { return this.y + this.height }
-//   left() { return this.x }
-//   right() { return this.x + this.width }
-//   draw() {
-//     this.ctx.save()
-//     this.ctx.beginPath()
-//     this.ctx.fillStyle = this.color
-//     this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, true)
-//     this.ctx.fill()
-//     this.ctx.restore()
-//     // this.ctx.save()
-//     // this.ctx.fillStyle = "red"
-//     // this.ctx.fillRect(this.x, this.y, this.width, this.height)
-//     // this.ctx.restore()
-//   }
 
-//   //update()
-
-// }
 
 var bubbleCount = 20;
 var bubbleSpeed = 1;
 var popLines = 6;
 var popDistance = 40;
+
 class Bubble {
   constructor(ctx, x, y, radius, color) {
     this.ctx = ctx
-    // this.height = this.radius * 2
-    // this.width = this.radius * 2
-
     this.radius = radius;
     this.x = x;
     this.y = y
@@ -51,6 +20,7 @@ class Bubble {
     this.rotation = Math.floor(Math.random() * (this.maxRotation - (this.maxRotation * -1))) + (this.maxRotation * -1);
     this.rotationDirection = 'forward';
     this.crashed = false
+
     // Populate Lines
     for (var i = 0; i < popLines; i++) {
       var tempLine = new CreateLine(this.color);
@@ -65,15 +35,6 @@ class Bubble {
   left() { return this.x }
   right() { return this.x + this.width }
 
-  // resetPosition() {
-  //   this.position = { x: 0, y: 0 };
-  //   this.radius = this.radius;
-  //   this.x = Math.random() * canvas.width - this.radius;
-  //   this.y = Math.random() * canvas.height;
-  //   this.distanceBetweenWaves = 50 + Math.random() * 40;
-  //   this.count = canvas.height + this.y;
-  //   this.popping = false;
-  // }
 
   // draw the circles
   draw() {
@@ -119,9 +80,6 @@ class Bubble {
             this.lines[a].inversePop = true;
             this.lines[a].popDistanceReturn += 1;
             this.lines[a].popDistance -= 0.03;
-          } else {
-            // this.lines[a].resetValues();
-            // this.resetPosition();
           }
         }
 

@@ -15,11 +15,6 @@ class Enemy {
 
   draw() {
     this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-    // ctx.beginPath();
-    // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-    // ctx.closePath();
-    // ctx.fillStyle = this.color;
-    // ctx.fill();
   }
 
   top() { return this.y }
