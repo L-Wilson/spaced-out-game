@@ -254,4 +254,7 @@ class Game {
 
   }
 }
+<<<<<<< HEAD:js/Game.js
 
+=======
+>>>>>>> a05bd1175015dd5bbaef509a94df101a92194050:js/game.js
